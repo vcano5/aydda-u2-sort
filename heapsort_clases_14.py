@@ -1,22 +1,19 @@
-class Articulo(clave, nombre, precio):
-    
+class Articulo:
+    def __init__(self, clave, nombre, precio):
+        self.clave = clave
+        self.nombre = nombre
+        self.precio = precio
+    def imprimir_datos(self):
+        print(self.clave, self.nombre, self.precio) 
+
+payaso = Articulo("1424", "Paleta Payaso", 20.00)
+gansito = Articulo("1465", "Gansito", 15.00)
+pandemuerto = Articulo("4126", "Pan de muerto", 30.00)
 
 DATOS = [
-    {
-        "clave": "1424",
-        "nombre": "Paleta Payaso",
-        "precio": 20.00
-    },
-    {
-        "clave": "1465",
-        "nombre": "Gansito",
-        "precio": 15.00
-    },
-    {
-        "clave": "4126",
-        "nombre": "Pan de muerto",
-        "precio": 30.00
-    }
+    payaso,
+    gansito,
+    pandemuerto
 ]
 
 def crear_heap(data, n, i):
@@ -24,10 +21,10 @@ def crear_heap(data, n, i):
     left = 2 * i + 1
     right = 2 * i + 2
 
-    if left < n and data[left]['precio'] < data[smallest]['precio']:
+    if left < n and data[left].precio < data[smallest].precio:
         smallest = left
 
-    if right < n and data[right]['precio'] < data[smallest]['precio']:
+    if right < n and data[right].precio < data[smallest].precio:
         smallest = right
 
     if smallest != i:
@@ -51,4 +48,4 @@ if __name__ == "__main__":
     # Ordenar DATOS con heapsort de manera descendente segun "precio"
     sorted_data = heapsort(DATOS)
     for item in sorted_data:
-        print(item)
+        item.imprimir_datos()
